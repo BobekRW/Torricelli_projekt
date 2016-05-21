@@ -74,8 +74,12 @@ namespace Torricelli {
 		double g = 0.0;
 		double Z = 0.0;
 		double t = 0.0;
+		int size_x = 0;
+		int size_y = 0;
+
 	private: System::Windows::Forms::Label^  etykietaCzasSpadku;
 	private: System::Windows::Forms::Label^  wynikCzasu;
+	private: System::Windows::Forms::ToolStripMenuItem^  poka¿WykresToolStripMenuItem;
 			 bool check = true;
 
 
@@ -90,6 +94,7 @@ namespace Torricelli {
 				 this->wysokoscBeczkitextBox = (gcnew System::Windows::Forms::TextBox());
 				 this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 				 this->plikToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+				 this->poka¿WykresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->koniecToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->edycjaToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 				 this->oProgramieToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -131,15 +136,25 @@ namespace Torricelli {
 				 // 
 				 // plikToolStripMenuItem
 				 // 
-				 this->plikToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->koniecToolStripMenuItem });
+				 this->plikToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+					 this->poka¿WykresToolStripMenuItem,
+						 this->koniecToolStripMenuItem
+				 });
 				 this->plikToolStripMenuItem->Name = L"plikToolStripMenuItem";
 				 this->plikToolStripMenuItem->Size = System::Drawing::Size(38, 20);
 				 this->plikToolStripMenuItem->Text = L"Plik";
 				 // 
+				 // poka¿WykresToolStripMenuItem
+				 // 
+				 this->poka¿WykresToolStripMenuItem->Name = L"poka¿WykresToolStripMenuItem";
+				 this->poka¿WykresToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+				 this->poka¿WykresToolStripMenuItem->Text = L"Poka¿ Wykres";
+				 this->poka¿WykresToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::poka¿WykresToolStripMenuItem_Click);
+				 // 
 				 // koniecToolStripMenuItem
 				 // 
 				 this->koniecToolStripMenuItem->Name = L"koniecToolStripMenuItem";
-				 this->koniecToolStripMenuItem->Size = System::Drawing::Size(110, 22);
+				 this->koniecToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 				 this->koniecToolStripMenuItem->Text = L"Koniec";
 				 this->koniecToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::koniecToolStripMenuItem_Click);
 				 // 
@@ -271,7 +286,7 @@ namespace Torricelli {
 				 // 
 				 // Form1
 				 // 
-				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+				 this->AutoScaleDimensions = System::Drawing::SizeF(size_x, size_y);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(372, 261);
 				 this->Controls->Add(this->wynikCzasu);
@@ -325,6 +340,7 @@ namespace Torricelli {
 				Ho = Double::Parse(wysokoscOtworutextBox->Text);
 			else{
 				MessageBox::Show("B³êdne dane dla wartoœci wysokoœci otworu beczki!", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				wysokoscOtworutextBox->Clear();
 				check = false;
 			}
 		}
@@ -347,9 +363,9 @@ namespace Torricelli {
 			check = false;
 		}
 
-		if (check)
+		if (check == true)
 		{
-			v = sqrt(2 * g*Ho);
+			v = sqrt(2 * g*(Hb - Ho));
 			Z = 2 * sqrt(Ho*(Hb - Ho));
 			t = sqrt((2 * (Hb - Ho)) / g);
 			wynikPredkosci->Text = (v).ToString();
@@ -357,6 +373,19 @@ namespace Torricelli {
 			wynikCzasu->Text = (t).ToString();
 		}
 	}
-	};
+	private: System::Void poka¿WykresToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+		Form^ oknoWykresu = gcnew Form();
+		oknoWykresu->Text = "Wykres";
+		oknoWykresu->Width=400;
+		oknoWykresu->Height = 400;
+		oknoWykresu->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
+		oknoWykresu->Location = Point(size_x+600, size_y+90);
+		if (check == true)
+			oknoWykresu->Show();
+		else
+			MessageBox::Show("Podano niepoprawne wartoœci", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+	}
+};
 }
 
