@@ -1,5 +1,6 @@
 #pragma once
 #include<cmath>
+#include"Funckje.h"
 
 namespace Torricelli {
 
@@ -379,6 +380,9 @@ namespace Torricelli {
 		oknoWykresu->Height = 435;
 		oknoWykresu->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
 		oknoWykresu->Location = Point(600,90);
+
+		//wstawienie pictureBox 'a z wykresem
+
 		PictureBox^ wykres = gcnew PictureBox();
 		wykres->Image = Image::FromFile(L"wykres.jpg");
 		wykres->Location = System::Drawing::Point(0, 0);
@@ -386,7 +390,78 @@ namespace Torricelli {
 		wykres->TabIndex = 4;
 		wykres->TabStop = false;
 
-		//wyœwitlanie kolenych punktów
+		//wyœwietlanie kolenych punktów przez wstawienie pictureBox'a z znacznikiem
+
+		PictureBox^ znacznik0 = gcnew PictureBox();
+		znacznik0->Image = Image::FromFile(L"znacznik.png");
+		znacznik0->Location = System::Drawing::Point(18, 378);
+		znacznik0->Size = System::Drawing::Size(4,4);
+		znacznik0->TabIndex = 4;
+		znacznik0->TabStop = false;
+
+		PictureBox^ znacznik1 = gcnew PictureBox();
+		znacznik1->Image = Image::FromFile(L"znacznik.png");
+		znacznik1->Location = Point(wspolrzednaX(Ho, 1), wspolrzednaY(v, 1));
+		znacznik1->Size = System::Drawing::Size(4, 4);
+		znacznik1->TabIndex = 4;
+		znacznik1->TabStop = false;
+		znacznik1->Visible = true;
+
+		PictureBox^ znacznik2 = gcnew PictureBox();
+		znacznik2->Image = Image::FromFile(L"znacznik.png");
+		znacznik2->Location = System::Drawing::Point(wspolrzednaX(Ho,2),wspolrzednaY(v,2));
+		znacznik2->Size = System::Drawing::Size(4, 4);
+		znacznik2->TabIndex = 4;
+		znacznik2->TabStop = false;
+		znacznik2->Visible = true;
+
+		PictureBox^ znacznik3 = gcnew PictureBox();
+		znacznik3->Image = Image::FromFile(L"znacznik.png");
+		znacznik3->Location = System::Drawing::Point(wspolrzednaX(Ho, 3), wspolrzednaY(v,3));
+		znacznik3->Size = System::Drawing::Size(4, 4);
+		znacznik3->TabIndex = 4;
+		znacznik3->TabStop = false;
+		//znacznik3->Visible = false;
+
+		PictureBox^ znacznik4 = gcnew PictureBox();
+		znacznik4->Image = Image::FromFile(L"znacznik.png");
+		znacznik4->Location = System::Drawing::Point(wspolrzednaX(Ho, 4), wspolrzednaY(v, 4));
+		znacznik4->Size = System::Drawing::Size(4, 4);
+		znacznik4->TabIndex = 4;
+		znacznik4->TabStop = false;
+		//znacznik4->Visible = false;
+
+		PictureBox^ znacznik5 = gcnew PictureBox();
+		znacznik5->Image = Image::FromFile(L"znacznik.png");
+		znacznik5->Location = System::Drawing::Point(wspolrzednaX(Ho, 5), wspolrzednaY(v, 5));
+		znacznik5->Size = System::Drawing::Size(4, 4);
+		znacznik5->TabIndex = 4;
+		znacznik5->TabStop = false;
+		//znacznik5->Visible = false;
+
+		PictureBox^ znacznik6 = gcnew PictureBox();
+		znacznik6->Image = Image::FromFile(L"znacznik.png");
+		znacznik6->Location = System::Drawing::Point(wspolrzednaX(Ho, 6), wspolrzednaY(v, 6));
+		znacznik6->Size = System::Drawing::Size(4, 4);
+		znacznik6->TabIndex = 4;
+		znacznik6->TabStop = false;
+		//znacznik6->Visible = false;
+
+		PictureBox^ znacznik7 = gcnew PictureBox();
+		znacznik7->Image = Image::FromFile(L"znacznik.png");
+		znacznik7->Location = System::Drawing::Point(wspolrzednaX(Ho, 8), wspolrzednaY(v, 8));
+		znacznik7->Size = System::Drawing::Size(4, 4);
+		znacznik7->TabIndex = 4;
+		znacznik7->TabStop = false;
+		//znacznik7->Visible = false;
+
+		PictureBox^ znacznik8 = gcnew PictureBox();
+		znacznik8->Image = Image::FromFile(L"znacznik.png");
+		znacznik8->Location = System::Drawing::Point(wspolrzednaX(Ho, 2), wspolrzednaY(v, 2));
+		znacznik8->Size = System::Drawing::Size(4, 4);
+		znacznik8->TabIndex = 4;
+		znacznik8->TabStop = false;
+		//znacznik8->Visible = false;
 
 
 		//etykiety wartoœci y
@@ -402,66 +477,74 @@ namespace Torricelli {
 		Label^ label_wartosci1y = gcnew Label();
 		label_wartosci1y->AutoSize = true;
 		label_wartosci1y->BackColor = System::Drawing::Color::DeepSkyBlue;
-		label_wartosci1y->Location = System::Drawing::Point(2, 332);
-		label_wartosci1y->Size = System::Drawing::Size(10, 10);
+		label_wartosci1y->Location = System::Drawing::Point(-3, 332);
+		label_wartosci1y->Size = System::Drawing::Size(23, 10);
 		label_wartosci1y->TabIndex = 9;
-		label_wartosci1y->Text = "0";
+		label_wartosci1y->Text = String::Format("{0:0.0}", v / 8);
+		label_wartosci1y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci2y = gcnew Label();
 		label_wartosci2y->AutoSize = true;
 		label_wartosci2y->BackColor = System::Drawing::Color::DeepSkyBlue;
-		label_wartosci2y->Location = System::Drawing::Point(2, 292);
+		label_wartosci2y->Location = System::Drawing::Point(-3, 292);
 		label_wartosci2y->Size = System::Drawing::Size(10, 10);
 		label_wartosci2y->TabIndex = 9;
-		label_wartosci2y->Text = "0";
+		label_wartosci2y->Text = String::Format("{0:0.0}", (v / 8) * 2);
+		label_wartosci2y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci3y = gcnew Label();
 		label_wartosci3y->AutoSize = true;
 		label_wartosci3y->BackColor = System::Drawing::Color::DeepSkyBlue;
-		label_wartosci3y->Location = System::Drawing::Point(2, 252);
+		label_wartosci3y->Location = System::Drawing::Point(-3, 252);
 		label_wartosci3y->Size = System::Drawing::Size(10, 10);
 		label_wartosci3y->TabIndex = 9;
-		label_wartosci3y->Text = "0";
+		label_wartosci3y->Text = String::Format("{0:0.0}", (v / 8)*3);
+		label_wartosci3y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci4y = gcnew Label();
 		label_wartosci4y->AutoSize = true;
 		label_wartosci4y->BackColor = System::Drawing::Color::DeepSkyBlue;
-		label_wartosci4y->Location = System::Drawing::Point(2, 212);
+		label_wartosci4y->Location = System::Drawing::Point(-3, 212);
 		label_wartosci4y->Size = System::Drawing::Size(10, 10);
 		label_wartosci4y->TabIndex = 9;
-		label_wartosci4y->Text = "0";
+		label_wartosci4y->Text = String::Format("{0:0.0}", (v / 8)*4);
+		label_wartosci4y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci5y = gcnew Label();
 		label_wartosci5y->AutoSize = true;
 		label_wartosci5y->BackColor = System::Drawing::Color::DeepSkyBlue;
-		label_wartosci5y->Location = System::Drawing::Point(2,172);
+		label_wartosci5y->Location = System::Drawing::Point(-3,172);
 		label_wartosci5y->Size = System::Drawing::Size(10, 10);
 		label_wartosci5y->TabIndex = 9;
-		label_wartosci5y->Text = "0";
+		label_wartosci5y->Text = String::Format("{0:0.0}", (v / 8)*5);
+		label_wartosci5y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci6y = gcnew Label();
 		label_wartosci6y->AutoSize = true;
 		label_wartosci6y->BackColor = System::Drawing::Color::DeepSkyBlue;
-		label_wartosci6y->Location = System::Drawing::Point(2, 132);
+		label_wartosci6y->Location = System::Drawing::Point(-3, 132);
 		label_wartosci6y->Size = System::Drawing::Size(10, 10);
 		label_wartosci6y->TabIndex = 9;
-		label_wartosci6y->Text = "0";
+		label_wartosci6y->Text = String::Format("{0:0.0}", (v / 8)*6);
+		label_wartosci6y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci7y = gcnew Label();
 		label_wartosci7y->AutoSize = true;
 		label_wartosci7y->BackColor = System::Drawing::Color::DeepSkyBlue;
-		label_wartosci7y->Location = System::Drawing::Point(2, 92);
+		label_wartosci7y->Location = System::Drawing::Point(-3, 92);
 		label_wartosci7y->Size = System::Drawing::Size(10, 10);
 		label_wartosci7y->TabIndex = 9;
-		label_wartosci7y->Text = "0";
+		label_wartosci7y->Text = String::Format("{0:0.0}", (v / 8)*7);
+		label_wartosci7y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci8y = gcnew Label();
 		label_wartosci8y->AutoSize = true;
 		label_wartosci8y->BackColor = System::Drawing::Color::DeepSkyBlue;
-		label_wartosci8y->Location = System::Drawing::Point(2, 52);
+		label_wartosci8y->Location = System::Drawing::Point(-3, 52);
 		label_wartosci8y->Size = System::Drawing::Size(10, 10);
 		label_wartosci8y->TabIndex = 9;
-		label_wartosci8y->Text = "0";
+		label_wartosci8y->Text = String::Format("{0:0.0}", v);
+		label_wartosci8y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		//Etykiety wartoœci x
 
@@ -471,7 +554,8 @@ namespace Torricelli {
 		label_wartosci1x->Location = System::Drawing::Point(42, 382);
 		label_wartosci1x->Size = System::Drawing::Size(10, 10);
 		label_wartosci1x->TabIndex = 9;
-		label_wartosci1x->Text = "0";
+		label_wartosci1x->Text = String::Format("{0:0.00}", (Ho / 8));
+		label_wartosci1y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci2x = gcnew Label();
 		label_wartosci2x->AutoSize = true;
@@ -479,7 +563,8 @@ namespace Torricelli {
 		label_wartosci2x->Location = System::Drawing::Point(82, 382);
 		label_wartosci2x->Size = System::Drawing::Size(10, 10);
 		label_wartosci2x->TabIndex = 9;
-		label_wartosci2x->Text = "0";
+		label_wartosci2x->Text = String::Format("{0:0.00}", (Ho / 8)*2);
+		label_wartosci1y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci3x = gcnew Label();
 		label_wartosci3x->AutoSize = true;
@@ -487,7 +572,8 @@ namespace Torricelli {
 		label_wartosci3x->Location = System::Drawing::Point(122, 382);
 		label_wartosci3x->Size = System::Drawing::Size(10, 10);
 		label_wartosci3x->TabIndex = 9;
-		label_wartosci3x->Text = "0";
+		label_wartosci3x->Text = String::Format("{0:0.00}", (Ho / 8)*3);
+		label_wartosci1y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci4x = gcnew Label();
 		label_wartosci4x->AutoSize = true;
@@ -495,7 +581,8 @@ namespace Torricelli {
 		label_wartosci4x->Location = System::Drawing::Point(162, 382);
 		label_wartosci4x->Size = System::Drawing::Size(10, 10);
 		label_wartosci4x->TabIndex = 9;
-		label_wartosci4x->Text = "0";
+		label_wartosci4x->Text = String::Format("{0:0.00}", (Ho / 8)*4);
+		label_wartosci1y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci5x = gcnew Label();
 		label_wartosci5x->AutoSize = true;
@@ -503,7 +590,8 @@ namespace Torricelli {
 		label_wartosci5x->Location = System::Drawing::Point(202, 382);
 		label_wartosci5x->Size = System::Drawing::Size(10, 10);
 		label_wartosci5x->TabIndex = 9;
-		label_wartosci5x->Text = "0";
+		label_wartosci5x->Text = String::Format("{0:0.00}", (Ho / 8)*5);
+		label_wartosci1y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci6x = gcnew Label();
 		label_wartosci6x->AutoSize = true;
@@ -511,7 +599,8 @@ namespace Torricelli {
 		label_wartosci6x->Location = System::Drawing::Point(242, 382);
 		label_wartosci6x->Size = System::Drawing::Size(10, 10);
 		label_wartosci6x->TabIndex = 9;
-		label_wartosci6x->Text = "0";
+		label_wartosci6x->Text = String::Format("{0:0.00}", (Ho / 8)*6);
+		label_wartosci1y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci7x = gcnew Label();
 		label_wartosci7x->AutoSize = true;
@@ -519,7 +608,8 @@ namespace Torricelli {
 		label_wartosci7x->Location = System::Drawing::Point(282, 382);
 		label_wartosci7x->Size = System::Drawing::Size(10, 10);
 		label_wartosci7x->TabIndex = 9;
-		label_wartosci7x->Text = "0";
+		label_wartosci7x->Text = String::Format("{0:0.00}", (Ho / 8)*7);
+		label_wartosci1y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		Label^ label_wartosci8x = gcnew Label();
 		label_wartosci8x->AutoSize = true;
@@ -527,7 +617,8 @@ namespace Torricelli {
 		label_wartosci8x->Location = System::Drawing::Point(322, 382);
 		label_wartosci8x->Size = System::Drawing::Size(10, 10);
 		label_wartosci8x->TabIndex = 9;
-		label_wartosci8x->Text = "0";
+		label_wartosci8x->Text = String::Format("{0:0.00}", Ho);
+		label_wartosci1y->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7));
 
 		//etykieta nag³ówkowa wykresu
 
@@ -546,7 +637,7 @@ namespace Torricelli {
 		label_podpisY->Location = System::Drawing::Point(2, 20);
 		label_podpisY->Size = System::Drawing::Size(10, 10);
 		label_podpisY->TabIndex = 9;
-		label_podpisY->Text = "[0]";
+		label_podpisY->Text = "v[m/s]";
 
 		Label^ label_podpisX = gcnew Label();
 		label_podpisX->AutoSize = true;
@@ -554,9 +645,18 @@ namespace Torricelli {
 		label_podpisX->Location = System::Drawing::Point(362, 350);
 		label_podpisX->Size = System::Drawing::Size(10, 10);
 		label_podpisX->TabIndex = 9;
-		label_podpisX->Text = "[0]";
+		label_podpisX->Text = "h[m]";
 
 
+		oknoWykresu->Controls->Add(znacznik0);
+		oknoWykresu->Controls->Add(znacznik1);
+		oknoWykresu->Controls->Add(znacznik2);
+		oknoWykresu->Controls->Add(znacznik3);
+		oknoWykresu->Controls->Add(znacznik4);
+		oknoWykresu->Controls->Add(znacznik5);
+		oknoWykresu->Controls->Add(znacznik6);
+		oknoWykresu->Controls->Add(znacznik7);
+		oknoWykresu->Controls->Add(znacznik8);
 		oknoWykresu->Controls->Add(label_naglowek);
 		oknoWykresu->Controls->Add(label_wartosci0y);
 		oknoWykresu->Controls->Add(label_wartosci1y);
@@ -578,7 +678,7 @@ namespace Torricelli {
 		oknoWykresu->Controls->Add(label_podpisX);
 		oknoWykresu->Controls->Add(label_podpisY);
 		oknoWykresu->Controls->Add(wykres);
-
+		
 
 		if (check == true)
 		{
