@@ -74,8 +74,6 @@ namespace Torricelli {
 		double g = 0.0;
 		double Z = 0.0;
 		double t = 0.0;
-		int size_x = 0;
-		int size_y = 0;
 
 	private: System::Windows::Forms::Label^  etykietaCzasSpadku;
 	private: System::Windows::Forms::Label^  wynikCzasu;
@@ -147,14 +145,14 @@ namespace Torricelli {
 				 // poka¿WykresToolStripMenuItem
 				 // 
 				 this->poka¿WykresToolStripMenuItem->Name = L"poka¿WykresToolStripMenuItem";
-				 this->poka¿WykresToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+				 this->poka¿WykresToolStripMenuItem->Size = System::Drawing::Size(146, 22);
 				 this->poka¿WykresToolStripMenuItem->Text = L"Poka¿ Wykres";
 				 this->poka¿WykresToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::poka¿WykresToolStripMenuItem_Click);
 				 // 
 				 // koniecToolStripMenuItem
 				 // 
 				 this->koniecToolStripMenuItem->Name = L"koniecToolStripMenuItem";
-				 this->koniecToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+				 this->koniecToolStripMenuItem->Size = System::Drawing::Size(146, 22);
 				 this->koniecToolStripMenuItem->Text = L"Koniec";
 				 this->koniecToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::koniecToolStripMenuItem_Click);
 				 // 
@@ -226,6 +224,7 @@ namespace Torricelli {
 				 // etykietaPredkosc
 				 // 
 				 this->etykietaPredkosc->AutoSize = true;
+				 this->etykietaPredkosc->BackColor = System::Drawing::SystemColors::Control;
 				 this->etykietaPredkosc->Location = System::Drawing::Point(234, 90);
 				 this->etykietaPredkosc->Name = L"etykietaPredkosc";
 				 this->etykietaPredkosc->Size = System::Drawing::Size(110, 13);
@@ -286,7 +285,7 @@ namespace Torricelli {
 				 // 
 				 // Form1
 				 // 
-				 this->AutoScaleDimensions = System::Drawing::SizeF(size_x, size_y);
+				 this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				 this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				 this->ClientSize = System::Drawing::Size(372, 261);
 				 this->Controls->Add(this->wynikCzasu);
@@ -377,11 +376,215 @@ namespace Torricelli {
 		Form^ oknoWykresu = gcnew Form();
 		oknoWykresu->Text = "Wykres";
 		oknoWykresu->Width=400;
-		oknoWykresu->Height = 400;
+		oknoWykresu->Height = 435;
 		oknoWykresu->StartPosition = System::Windows::Forms::FormStartPosition::Manual;
-		oknoWykresu->Location = Point(size_x+600, size_y+90);
+		oknoWykresu->Location = Point(600,90);
+		PictureBox^ wykres = gcnew PictureBox();
+		wykres->Image = Image::FromFile(L"wykres.jpg");
+		wykres->Location = System::Drawing::Point(0, 0);
+		wykres->Size = System::Drawing::Size(400, 400);
+		wykres->TabIndex = 4;
+		wykres->TabStop = false;
+
+		//wyœwitlanie kolenych punktów
+
+
+		//etykiety wartoœci y
+
+		Label^ label_wartosci0y = gcnew Label();
+		label_wartosci0y->AutoSize = true;
+		label_wartosci0y->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci0y->Location = System::Drawing::Point(2, 382); 
+		label_wartosci0y->Size = System::Drawing::Size(10, 10);
+		label_wartosci0y->TabIndex = 9;
+		label_wartosci0y->Text = "(0,0)";
+
+		Label^ label_wartosci1y = gcnew Label();
+		label_wartosci1y->AutoSize = true;
+		label_wartosci1y->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci1y->Location = System::Drawing::Point(2, 332);
+		label_wartosci1y->Size = System::Drawing::Size(10, 10);
+		label_wartosci1y->TabIndex = 9;
+		label_wartosci1y->Text = "0";
+
+		Label^ label_wartosci2y = gcnew Label();
+		label_wartosci2y->AutoSize = true;
+		label_wartosci2y->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci2y->Location = System::Drawing::Point(2, 292);
+		label_wartosci2y->Size = System::Drawing::Size(10, 10);
+		label_wartosci2y->TabIndex = 9;
+		label_wartosci2y->Text = "0";
+
+		Label^ label_wartosci3y = gcnew Label();
+		label_wartosci3y->AutoSize = true;
+		label_wartosci3y->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci3y->Location = System::Drawing::Point(2, 252);
+		label_wartosci3y->Size = System::Drawing::Size(10, 10);
+		label_wartosci3y->TabIndex = 9;
+		label_wartosci3y->Text = "0";
+
+		Label^ label_wartosci4y = gcnew Label();
+		label_wartosci4y->AutoSize = true;
+		label_wartosci4y->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci4y->Location = System::Drawing::Point(2, 212);
+		label_wartosci4y->Size = System::Drawing::Size(10, 10);
+		label_wartosci4y->TabIndex = 9;
+		label_wartosci4y->Text = "0";
+
+		Label^ label_wartosci5y = gcnew Label();
+		label_wartosci5y->AutoSize = true;
+		label_wartosci5y->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci5y->Location = System::Drawing::Point(2,172);
+		label_wartosci5y->Size = System::Drawing::Size(10, 10);
+		label_wartosci5y->TabIndex = 9;
+		label_wartosci5y->Text = "0";
+
+		Label^ label_wartosci6y = gcnew Label();
+		label_wartosci6y->AutoSize = true;
+		label_wartosci6y->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci6y->Location = System::Drawing::Point(2, 132);
+		label_wartosci6y->Size = System::Drawing::Size(10, 10);
+		label_wartosci6y->TabIndex = 9;
+		label_wartosci6y->Text = "0";
+
+		Label^ label_wartosci7y = gcnew Label();
+		label_wartosci7y->AutoSize = true;
+		label_wartosci7y->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci7y->Location = System::Drawing::Point(2, 92);
+		label_wartosci7y->Size = System::Drawing::Size(10, 10);
+		label_wartosci7y->TabIndex = 9;
+		label_wartosci7y->Text = "0";
+
+		Label^ label_wartosci8y = gcnew Label();
+		label_wartosci8y->AutoSize = true;
+		label_wartosci8y->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci8y->Location = System::Drawing::Point(2, 52);
+		label_wartosci8y->Size = System::Drawing::Size(10, 10);
+		label_wartosci8y->TabIndex = 9;
+		label_wartosci8y->Text = "0";
+
+		//Etykiety wartoœci x
+
+		Label^ label_wartosci1x = gcnew Label();
+		label_wartosci1x->AutoSize = true;
+		label_wartosci1x->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci1x->Location = System::Drawing::Point(42, 382);
+		label_wartosci1x->Size = System::Drawing::Size(10, 10);
+		label_wartosci1x->TabIndex = 9;
+		label_wartosci1x->Text = "0";
+
+		Label^ label_wartosci2x = gcnew Label();
+		label_wartosci2x->AutoSize = true;
+		label_wartosci2x->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci2x->Location = System::Drawing::Point(82, 382);
+		label_wartosci2x->Size = System::Drawing::Size(10, 10);
+		label_wartosci2x->TabIndex = 9;
+		label_wartosci2x->Text = "0";
+
+		Label^ label_wartosci3x = gcnew Label();
+		label_wartosci3x->AutoSize = true;
+		label_wartosci3x->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci3x->Location = System::Drawing::Point(122, 382);
+		label_wartosci3x->Size = System::Drawing::Size(10, 10);
+		label_wartosci3x->TabIndex = 9;
+		label_wartosci3x->Text = "0";
+
+		Label^ label_wartosci4x = gcnew Label();
+		label_wartosci4x->AutoSize = true;
+		label_wartosci4x->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci4x->Location = System::Drawing::Point(162, 382);
+		label_wartosci4x->Size = System::Drawing::Size(10, 10);
+		label_wartosci4x->TabIndex = 9;
+		label_wartosci4x->Text = "0";
+
+		Label^ label_wartosci5x = gcnew Label();
+		label_wartosci5x->AutoSize = true;
+		label_wartosci5x->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci5x->Location = System::Drawing::Point(202, 382);
+		label_wartosci5x->Size = System::Drawing::Size(10, 10);
+		label_wartosci5x->TabIndex = 9;
+		label_wartosci5x->Text = "0";
+
+		Label^ label_wartosci6x = gcnew Label();
+		label_wartosci6x->AutoSize = true;
+		label_wartosci6x->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci6x->Location = System::Drawing::Point(242, 382);
+		label_wartosci6x->Size = System::Drawing::Size(10, 10);
+		label_wartosci6x->TabIndex = 9;
+		label_wartosci6x->Text = "0";
+
+		Label^ label_wartosci7x = gcnew Label();
+		label_wartosci7x->AutoSize = true;
+		label_wartosci7x->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci7x->Location = System::Drawing::Point(282, 382);
+		label_wartosci7x->Size = System::Drawing::Size(10, 10);
+		label_wartosci7x->TabIndex = 9;
+		label_wartosci7x->Text = "0";
+
+		Label^ label_wartosci8x = gcnew Label();
+		label_wartosci8x->AutoSize = true;
+		label_wartosci8x->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_wartosci8x->Location = System::Drawing::Point(322, 382);
+		label_wartosci8x->Size = System::Drawing::Size(10, 10);
+		label_wartosci8x->TabIndex = 9;
+		label_wartosci8x->Text = "0";
+
+		//etykieta nag³ówkowa wykresu
+
+		Label^ label_naglowek = gcnew Label();
+		label_naglowek->AutoSize = true;
+		label_naglowek->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_naglowek->Location = System::Drawing::Point(120, 20);
+		label_naglowek->Size = System::Drawing::Size(100, 100);
+		label_naglowek->TabIndex = 9;
+		label_naglowek->Text = "Wykres zale¿noœci";
+		label_naglowek->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
+
+		Label^ label_podpisY = gcnew Label();
+		label_podpisY->AutoSize = true;
+		label_podpisY->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_podpisY->Location = System::Drawing::Point(2, 20);
+		label_podpisY->Size = System::Drawing::Size(10, 10);
+		label_podpisY->TabIndex = 9;
+		label_podpisY->Text = "[0]";
+
+		Label^ label_podpisX = gcnew Label();
+		label_podpisX->AutoSize = true;
+		label_podpisX->BackColor = System::Drawing::Color::DeepSkyBlue;
+		label_podpisX->Location = System::Drawing::Point(362, 350);
+		label_podpisX->Size = System::Drawing::Size(10, 10);
+		label_podpisX->TabIndex = 9;
+		label_podpisX->Text = "[0]";
+
+
+		oknoWykresu->Controls->Add(label_naglowek);
+		oknoWykresu->Controls->Add(label_wartosci0y);
+		oknoWykresu->Controls->Add(label_wartosci1y);
+		oknoWykresu->Controls->Add(label_wartosci2y);
+		oknoWykresu->Controls->Add(label_wartosci3y);
+		oknoWykresu->Controls->Add(label_wartosci4y);
+		oknoWykresu->Controls->Add(label_wartosci5y);
+		oknoWykresu->Controls->Add(label_wartosci6y);
+		oknoWykresu->Controls->Add(label_wartosci7y);
+		oknoWykresu->Controls->Add(label_wartosci8y);
+		oknoWykresu->Controls->Add(label_wartosci1x);
+		oknoWykresu->Controls->Add(label_wartosci2x);
+		oknoWykresu->Controls->Add(label_wartosci3x);
+		oknoWykresu->Controls->Add(label_wartosci4x);
+		oknoWykresu->Controls->Add(label_wartosci5x);
+		oknoWykresu->Controls->Add(label_wartosci6x);
+		oknoWykresu->Controls->Add(label_wartosci7x);
+		oknoWykresu->Controls->Add(label_wartosci8x);
+		oknoWykresu->Controls->Add(label_podpisX);
+		oknoWykresu->Controls->Add(label_podpisY);
+		oknoWykresu->Controls->Add(wykres);
+
+
 		if (check == true)
+		{
 			oknoWykresu->Show();
+
+		}
 		else
 			MessageBox::Show("Podano niepoprawne wartoœci", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Information);
 
