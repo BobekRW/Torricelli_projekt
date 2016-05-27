@@ -356,16 +356,17 @@ namespace Torricelli {
 	}
 	private: System::Void policzButton_Click(System::Object^  sender, System::EventArgs^  e) {
 		// Hb
+		
 		try
 		{
-			if (Double::Parse(wysokoscBeczkitextBox->Text) >= 1.0)
+			if (Double::Parse(wysokoscBeczkitextBox->Text) >= 1.0 || String::IsNullOrWhiteSpace(wysokoscBeczkitextBox->Text)!=true || String::IsNullOrEmpty(wysokoscBeczkitextBox->Text)!=true)
 				Hb = Double::Parse(wysokoscBeczkitextBox->Text);
 			else{
 				MessageBox::Show("B³êdne dane dla wartoœci wysokoœci beczki!", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Information);
 				check = false;
 			}
 		}
-		catch (FormatException^ /*ex*/)
+		catch (Exception ^e)
 		{
 			MessageBox::Show("B³êdne dane dla wartoœci wysokoœci beczki!", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			check = false;
@@ -373,15 +374,14 @@ namespace Torricelli {
 		// Ho
 		try
 		{
-			if (Double::Parse(wysokoscOtworutextBox->Text) <= Hb && Double::Parse(wysokoscOtworutextBox->Text) >= 0)
+			if (Double::Parse(wysokoscOtworutextBox->Text) <= Hb && Double::Parse(wysokoscOtworutextBox->Text) >= 0 || String::IsNullOrWhiteSpace(wysokoscBeczkitextBox->Text) != true || String::IsNullOrEmpty(wysokoscBeczkitextBox->Text) != true)
 				Ho = Double::Parse(wysokoscOtworutextBox->Text);
 			else{
 				MessageBox::Show("B³êdne dane dla wartoœci wysokoœci otworu beczki!", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Information);
-				wysokoscOtworutextBox->Clear();
 				check = false;
 			}
 		}
-		catch (FormatException^ /*ex*/)
+		catch (Exception ^e)
 		{
 			MessageBox::Show("B³êdne dane dla wartoœci wysokoœci otworu beczki!", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			check = false;
@@ -389,16 +389,21 @@ namespace Torricelli {
 		// g
 		try
 		{
-			if (Double::Parse(GrawitacjatextBox->Text) <= 10.0 && Double::Parse(GrawitacjatextBox->Text) > 9.7)
+			if (Double::Parse(GrawitacjatextBox->Text) <= 10.0 && Double::Parse(GrawitacjatextBox->Text) > 9.7 || String::IsNullOrWhiteSpace(wysokoscBeczkitextBox->Text) != true || String::IsNullOrEmpty(wysokoscBeczkitextBox->Text) != true)
 				g = Double::Parse(GrawitacjatextBox->Text);
 			else
+			{
 				MessageBox::Show("Podana wartoœæ przyspieszenia grawitacyjnego jest niepoprawna", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				check = false;
+			}
 		}
-		catch (FormatException^ /*ex*/)
+		catch (Exception ^e)
 		{
 			MessageBox::Show("B³êdne dane dla wartoœci przyspieszenia grawitacyjnego!", "B³¹d", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			check = false;
 		}
+
+
 
 		if (check == true)
 		{
@@ -493,6 +498,20 @@ namespace Torricelli {
 		znacznik8->TabStop = false;
 		znacznik8->Visible = false;
 
+		PictureBox^ znacznik9 = gcnew PictureBox();
+		znacznik9->Image = Image::FromFile(L"znacznik.png");
+		znacznik9->Size = System::Drawing::Size(4, 4);
+		znacznik9->TabIndex = 4;
+		znacznik9->TabStop = false;
+		znacznik9->Visible = false;
+
+		PictureBox^ znacznik10 = gcnew PictureBox();
+		znacznik10->Image = Image::FromFile(L"znacznik.png");
+		znacznik10->Size = System::Drawing::Size(4, 4);
+		znacznik10->TabIndex = 4;
+		znacznik10->TabStop = false;
+		znacznik10->Visible = false;
+
 		//etykieta nag³ówkowa wykresu
 
 		Label^ label_naglowek = gcnew Label();
@@ -524,15 +543,19 @@ namespace Torricelli {
 			label_podpisY->Text = "v[m/s]";
 			label_podpisX->Text = "h[m]";
 			label_naglowek->Text = "Wykres zale¿noœci predkoœci strugi\nod wysokoœci wody nad otworem beczki";
+
 			//znaczniki
 			znacznik1->Location = Point(wspolrzednaX(Ho, 1), wspolrzednaYv(Hb , g, 1));
-			znacznik2->Location = System::Drawing::Point(wspolrzednaX(Ho, 2), wspolrzednaYv(Hb,g, 2));
-			znacznik3->Location = System::Drawing::Point(wspolrzednaX(Ho, 3), wspolrzednaYv(Hb,g, 3));
-			znacznik4->Location = System::Drawing::Point(wspolrzednaX(Ho, 4), wspolrzednaYv(Hb,g, 4));
-			znacznik5->Location = System::Drawing::Point(wspolrzednaX(Ho, 5), wspolrzednaYv(Hb,g, 5));
-			znacznik6->Location = System::Drawing::Point(wspolrzednaX(Ho, 6), wspolrzednaYv(Hb,g, 6));
-			znacznik7->Location = System::Drawing::Point(wspolrzednaX(Ho, 7), wspolrzednaYv(Hb, g, 7));
-			znacznik8->Location = System::Drawing::Point(wspolrzednaX(Ho, 8), wspolrzednaYv(Hb,g, 8));
+			znacznik2->Location = Point(wspolrzednaX(Ho, 2), wspolrzednaYv(Hb, g, 2));
+			znacznik3->Location = Point(wspolrzednaX(Ho, 3), wspolrzednaYv(Hb, g, 3));
+			znacznik4->Location = Point(wspolrzednaX(Ho, 4), wspolrzednaYv(Hb, g, 4));
+			znacznik5->Location = Point(wspolrzednaX(Ho, 5), wspolrzednaYv(Hb, g, 5));
+			znacznik6->Location = Point(wspolrzednaX(Ho, 6), wspolrzednaYv(Hb, g, 6));
+			znacznik7->Location = Point(wspolrzednaX(Ho, 7), wspolrzednaYv(Hb, g, 7));
+			znacznik8->Location = Point(wspolrzednaX(Ho, 8), wspolrzednaYv(Hb, g, 8));
+			znacznik9->Location = Point(wspolrzednaX(Ho, 9), wspolrzednaYv(Hb, g, 9));
+			znacznik10->Location = Point(wspolrzednaX(Ho, 10), wspolrzednaYv(Hb, g, 10));
+
 
 		}
 		else
@@ -540,15 +563,18 @@ namespace Torricelli {
 			label_podpisY->Text = "Z[m]";
 			label_podpisX->Text = "h[m]";
 			label_naglowek->Text = "Wykres zale¿noœci zasiêgu strugi\nod wysokoœci wody nad otworem beczki";
+
 			//znaczniki
-			znacznik1->Location = Point(wspolrzednaX(Ho, 1), wspolrzednaYz(v, 1));
-			znacznik2->Location = System::Drawing::Point(wspolrzednaX(Ho, 2), wspolrzednaYz(v, 2));
-			znacznik3->Location = System::Drawing::Point(wspolrzednaX(Ho, 3), wspolrzednaYz(v, 3));
-			znacznik4->Location = System::Drawing::Point(wspolrzednaX(Ho, 4), wspolrzednaYz(v, 4));
-			znacznik5->Location = System::Drawing::Point(wspolrzednaX(Ho, 5), wspolrzednaYz(v, 5));
-			znacznik6->Location = System::Drawing::Point(wspolrzednaX(Ho, 6), wspolrzednaYz(v, 6));
-			znacznik7->Location = System::Drawing::Point(wspolrzednaX(Ho, 7), wspolrzednaYz(v, 7));
-			znacznik8->Location = System::Drawing::Point(wspolrzednaX(Ho, 8), wspolrzednaYz(v, 8));
+			znacznik1->Location = Point(wspolrzednaX(Ho, 1), wspolrzednaYz(Hb, 1));
+			znacznik2->Location = Point(wspolrzednaX(Ho, 2), wspolrzednaYz(Hb, 2));
+			znacznik3->Location = Point(wspolrzednaX(Ho, 3), wspolrzednaYz(Hb, 3));
+			znacznik4->Location = Point(wspolrzednaX(Ho, 4), wspolrzednaYz(Hb, 4));
+			znacznik5->Location = Point(wspolrzednaX(Ho, 5), wspolrzednaYz(Hb, 5));
+			znacznik6->Location = Point(wspolrzednaX(Ho, 6), wspolrzednaYz(Hb, 6));
+			znacznik7->Location = Point(wspolrzednaX(Ho, 7), wspolrzednaYz(Hb, 7));
+			znacznik8->Location = Point(wspolrzednaX(Ho, 8), wspolrzednaYz(Hb, 8));
+			znacznik9->Location = Point(wspolrzednaX(Ho, 9), wspolrzednaYz(Hb, 9));
+			znacznik10->Location = Point(wspolrzednaX(Ho, 10), wspolrzednaYz(Hb, 10));
 		}
 
 
@@ -562,6 +588,8 @@ namespace Torricelli {
 		oknoWykresu->Controls->Add(znacznik6);
 		oknoWykresu->Controls->Add(znacznik7);
 		oknoWykresu->Controls->Add(znacznik8);
+		oknoWykresu->Controls->Add(znacznik9);
+		oknoWykresu->Controls->Add(znacznik10);
 		oknoWykresu->Controls->Add(label_naglowek);
 		oknoWykresu->Controls->Add(label_podpisX);
 		oknoWykresu->Controls->Add(label_podpisY);
@@ -582,6 +610,8 @@ namespace Torricelli {
 				znacznik6->Visible = true;
 				znacznik7->Visible = true;
 				znacznik8->Visible = true;
+				znacznik9->Visible = true;
+				znacznik10->Visible = true;
 			}
 			else if (Ho <= Hb && Ho != 0 && choice == false)
 			{
@@ -593,6 +623,8 @@ namespace Torricelli {
 				znacznik6->Visible = true;
 				znacznik7->Visible = true;
 				znacznik8->Visible = true;
+				znacznik9->Visible = true;
+				znacznik10->Visible = true;
 			}
 
 		}
